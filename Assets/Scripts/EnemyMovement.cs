@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float speed;
-    private EnemySpawner points;
+    private EnemySpawner script;
     private int pointNumber;
 
     [SerializeField] GameObject Explosion;
@@ -14,15 +14,15 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        points = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
+        script = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, points.points[pointNumber].position, speed * Time.deltaTime);
-        if(Vector2.Distance(transform.position, points.points[pointNumber].position) < 0.1f)
+        transform.position = Vector2.MoveTowards(transform.position, script.points[pointNumber].position, speed * Time.deltaTime);
+        if(Vector2.Distance(transform.position, script.points[pointNumber].position) < 0.1f)
         {
             pointNumber++;
         }
